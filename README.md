@@ -15,8 +15,6 @@ We added new files & folders:
 │   └── php // This is a package generated
 ├── out // This folder contains our final SDK after build
 │   └── kinde-php-sdk  // This is a finished package
-├── samples // This folder contains each sample which has implemented SDK
-│   └── php
 ├── scripts // This folder contains our's script to build package
 │   └── generator.sh // This script help create a new generator
 │   └── kinde-generate-package.sh // This script help build package by input language. Default: `php`
