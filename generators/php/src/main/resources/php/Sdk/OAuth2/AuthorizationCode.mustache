@@ -12,9 +12,7 @@ class AuthorizationCode
     {
         unset($_SESSION['oauthState']);
         try {
-            if (empty($clientSDK->state)) {
-                $state = Utils::randomString();
-            }
+            $state = Utils::randomString();
             $_SESSION['oauthState'] = $state;
             $searchParams = [
                 'client_id' => $clientSDK->clientId,
@@ -26,6 +24,9 @@ class AuthorizationCode
                 'state' => $state,
                 'start_page' => 'login'
             ];
+            if (!empty($clientSDK->additional)) {
+                $searchParams = array_merge($searchParams, $clientSDK->additional);
+            }
             if (!headers_sent()) {
                 exit(header('Location: '. $clientSDK->authorizationEndpoint . '?' . http_build_query($searchParams)));
             }

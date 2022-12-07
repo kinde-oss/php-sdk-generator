@@ -109,6 +109,7 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         super.processOpts();
 
         supportingFiles.add(new SupportingFile("ApiException.mustache", toSrcPath(invokerPackage, srcBasePath), "ApiException.php"));
+        supportingFiles.add(new SupportingFile("OAuthException.mustache", toSrcPath(invokerPackage, srcBasePath), "OAuthException.php"));
         supportingFiles.add(new SupportingFile("Configuration.mustache", toSrcPath(invokerPackage, srcBasePath), "Configuration.php"));
         supportingFiles.add(new SupportingFile("ObjectSerializer.mustache", toSrcPath(invokerPackage, srcBasePath), "ObjectSerializer.php"));
         supportingFiles.add(new SupportingFile("ModelInterface.mustache", toSrcPath(modelPackage, srcBasePath), "ModelInterface.php"));
@@ -122,6 +123,8 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
 
         /* /Enums/ */
         supportingFiles.add(new SupportingFile("Sdk/Enums/GrantType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "GrantType.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Enums/AuthStatus.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AuthStatus.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Enums/Additional.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "Additional.php"));
         
         /* /OAuth2/ */
         supportingFiles.add(new SupportingFile("Sdk/OAuth2/AuthorizationCode.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "AuthorizationCode.php"));
