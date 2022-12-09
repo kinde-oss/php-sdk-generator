@@ -125,14 +125,8 @@ class KindeClientSDK
         $this->logoutRedirectUri = $logoutRedirectUri;
         $this->scopes = $scopes;
         // Other endpoints
-        {{^authMethods}}
-        $this->authorizationEndpoint = $this->domain . 'oauth2/auth';
-        $this->tokenEndpoint = $this->domain . 'oauth2/token';
-        {{/authMethods}}
-        {{#authMethods}}
-        $this->authorizationEndpoint = $this->domain . '{{#isOAuth}}{{authorizationUrl}}{{/isOAuth}}';
-        $this->tokenEndpoint = $this->domain . '{{#isOAuth}}{{tokenUrl}}{{/isOAuth}}';
-        {{/authMethods}}
+        $this->authorizationEndpoint = $this->domain . '/oauth2/auth';
+        $this->tokenEndpoint = $this->domain . '/oauth2/token';
         $this->logoutEndpoint = $this->domain . '/logout';
         $this->authStatus = AuthStatus::UNAUTHENTICATED;
     }

@@ -630,6 +630,11 @@ use {{invokerPackage}}\ObjectSerializer;
         // this endpoint requires Bearer{{#bearerFormat}} ({{{.}}}){{/bearerFormat}} authentication (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        } else {
+            $token = json_decode($_SESSION['token']);
+            if (!empty($token) && !empty($token->access_token)) {
+                $headers['Authorization'] = 'Bearer ' . $token->access_token;
+            }
         }
         {{/isBasicBearer}}
         {{/isBasic}}
