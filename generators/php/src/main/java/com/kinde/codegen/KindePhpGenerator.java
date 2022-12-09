@@ -124,7 +124,7 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         /* /Enums/ */
         supportingFiles.add(new SupportingFile("Sdk/Enums/GrantType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "GrantType.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/AuthStatus.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AuthStatus.php"));
-        supportingFiles.add(new SupportingFile("Sdk/Enums/Additional.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "Additional.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Enums/AdditionalParameters.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AdditionalParameters.php"));
         
         /* /OAuth2/ */
         supportingFiles.add(new SupportingFile("Sdk/OAuth2/AuthorizationCode.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "AuthorizationCode.php"));
