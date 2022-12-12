@@ -108,7 +108,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/users'
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/users'
+                  next_token:
+                    type: string
         403:
           description: invalid_credentials
   /user:
