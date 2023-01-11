@@ -2,7 +2,7 @@
 
 {{.}}{{/description}}
 
-All URIs are relative to {{basePath}}.
+All URIs are relative to {{#operations}}{{#operation}}{{#-first}}{{#servers}}https://your_kinde_domain.kinde.com{{/servers}}{{^servers}}https://your_kinde_domain.kinde.com/api/v1{{/servers}}{{/-first}}{{/operation}}{{/operations}}
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,12 +26,18 @@ Method | HTTP request | Description
 require_once(__DIR__ . '/vendor/autoload.php');
 
 {{> php_doc_auth_partial}}
-$apiInstance = new {{invokerPackage}}\Api\{{classname}}(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(){{#hasAuthMethods}},
-    $config{{/hasAuthMethods}}
-);
+
+...
+use {{{invokerPackage}}}\Configuration;
+...
+
+$config = new Configuration();
+$config->setHost(YOUR_KINDE_HOST);
+
+// You can also set `access_token` via $config;
+$config->setAccessToken(`kinde_access_token`);
+
+$apiInstance = new {{invokerPackage}}\Api\{{classname}}($config);
 {{^vendorExtensions.x-group-parameters}}
 {{#allParams}}${{paramName}} = {{{example}}}; // {{{dataType}}}{{#description}} | {{{.}}}{{/description}}
 {{/allParams}}
