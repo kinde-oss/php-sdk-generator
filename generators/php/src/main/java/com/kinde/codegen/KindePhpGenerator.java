@@ -118,6 +118,7 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
         supportingFiles.add(new SupportingFile("phpunit.xml.mustache", "", "phpunit.xml.dist"));
         supportingFiles.add(new SupportingFile("php-cs-fixer.dist.mustache", "", ".php-cs-fixer.dist.php"));
+        supportingFiles.add(new SupportingFile("LICENSE", "", "LICENSE"));
 
         supportingFiles.add(new SupportingFile("KindeClientSDK.mustache", toSrcPath(invokerPackage, srcBasePath), "KindeClientSDK.php"));
 
