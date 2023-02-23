@@ -225,7 +225,7 @@ use {{invokerPackage}}\ObjectSerializer;
             {{#responses}}
             {{#-first}}
 
-            switch($statusCode) {
+            switch ($statusCode) {
             {{/-first}}
             {{#dataType}}
                 {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
@@ -631,7 +631,7 @@ use {{invokerPackage}}\ObjectSerializer;
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         } else {
-            $token = json_decode($_SESSION['token']);
+            $token = json_decode($_SESSION['kinde']['token']);
             if (!empty($token) && !empty($token->access_token)) {
                 $headers['Authorization'] = 'Bearer ' . $token->access_token;
             }
@@ -643,7 +643,7 @@ use {{invokerPackage}}\ObjectSerializer;
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         } else {
-            $token = json_decode($_SESSION['token']);
+            $token = json_decode($_SESSION['kinde']['token']);
             if (!empty($token) && !empty($token->access_token)) {
                 $headers['Authorization'] = 'Bearer ' . $token->access_token;
             }
