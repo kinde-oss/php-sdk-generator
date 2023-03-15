@@ -5,13 +5,24 @@ namespace {{invokerPackage}}\Sdk\OAuth2;
 use {{invokerPackage}}\Sdk\Enums\GrantType;
 use {{invokerPackage}}\Sdk\Utils\Utils;
 use {{invokerPackage}}\KindeClientSDK;
+use {{invokerPackage}}\Sdk\Storage\Storage;
 
 class AuthorizationCode
 {
+    /**
+     * @var Storage
+     */
+    protected $storage;
+
+    function __construct()
+    {
+        $this->storage = Storage::getInstance();
+    }
+
     public function login(KindeClientSDK $clientSDK, array $additionalParameters = [])
     {
         $state = Utils::randomString();
-        $_SESSION['kinde']['oauthState'] = $state;
+        $this->storage->setState($state);
         $searchParams = [
             'client_id' => $clientSDK->clientId,
             'grant_type' => GrantType::authorizationCode,

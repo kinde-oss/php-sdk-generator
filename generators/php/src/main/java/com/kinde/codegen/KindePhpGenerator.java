@@ -126,7 +126,13 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile("Sdk/Enums/GrantType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "GrantType.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/AuthStatus.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AuthStatus.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/AdditionalParameters.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AdditionalParameters.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Enums/StorageEnums.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "StorageEnums.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Enums/TokenType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "TokenType.php"));
         
+        /* /Storage/ */
+        supportingFiles.add(new SupportingFile("Sdk/Storage/BaseStorage.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Storage", "BaseStorage.php"));
+        supportingFiles.add(new SupportingFile("Sdk/Storage/Storage.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Storage", "Storage.php"));
+
         /* /OAuth2/ */
         supportingFiles.add(new SupportingFile("Sdk/OAuth2/AuthorizationCode.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "AuthorizationCode.php"));
         supportingFiles.add(new SupportingFile("Sdk/OAuth2/ClientCredentials.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "ClientCredentials.php"));
