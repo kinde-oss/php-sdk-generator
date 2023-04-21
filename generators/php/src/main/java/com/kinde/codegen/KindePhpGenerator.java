@@ -39,6 +39,8 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
     
     protected String sdkFolder = "Sdk";
 
+    public String sdkName = "kinde-oss/kinde-auth-php";
+
     protected String sdkPackage = invokerPackage + "\\" + sdkFolder;
 
     public KindePhpGenerator() {
@@ -121,10 +123,13 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile("LICENSE", "", "LICENSE"));
 
         supportingFiles.add(new SupportingFile("KindeClientSDK.mustache", toSrcPath(invokerPackage, srcBasePath), "KindeClientSDK.php"));
+        supportingFiles.add(new SupportingFile("OAuthException.mustache", toSrcPath(invokerPackage, srcBasePath), "OAuthException.php"));
+
+        /* assets */
+        supportingFiles.add(new SupportingFile("assets/img.jpg", "", "assets/img.jpg"));
 
         /* /Enums/ */
         supportingFiles.add(new SupportingFile("Sdk/Enums/GrantType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "GrantType.php"));
-        supportingFiles.add(new SupportingFile("Sdk/Enums/AuthStatus.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AuthStatus.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/AdditionalParameters.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AdditionalParameters.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/StorageEnums.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "StorageEnums.php"));
         supportingFiles.add(new SupportingFile("Sdk/Enums/TokenType.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Enums", "TokenType.php"));
@@ -142,12 +147,29 @@ public class KindePhpGenerator extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile("Sdk/Utils/Utils.mustache", toSrcPath(invokerPackage, srcBasePath) + File.separator + sdkFolder + File.separator + "Utils", "Utils.php"));
         
         /* /test/ */
-        supportingFiles.add(new SupportingFile("tests/KindeClientTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "Sdk", "KindeClientTest.php"));
-        supportingFiles.add(new SupportingFile("tests/OAuth2AuthorizationCodeFlowTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "Sdk", "OAuth2AuthorizationCodeFlowTest.php"));
-        supportingFiles.add(new SupportingFile("tests/OAuth2ClientCredentialTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "Sdk", "OAuth2ClientCredentialTest.php"));
-        supportingFiles.add(new SupportingFile("tests/OAuth2PKCETest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "Sdk", "OAuth2PKCETest.php"));
-        supportingFiles.add(new SupportingFile("tests/UtilsTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "Sdk", "UtilsTest.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/KindeClientSDK.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder, "KindeClientSDK.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/OAuthException.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder, "OAuthException.php"));
 
-        supportingFiles.add(new SupportingFile("bootstrap_test.mustache", toSrcPath(invokerPackage, testBasePath), "bootstrap.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/Enums/GrantType.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Enums", "GrantType.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/Enums/AdditionalParameters.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Enums", "AdditionalParameters.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/Enums/StorageEnums.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Enums", "StorageEnums.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/Enums/TokenType.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Enums", "TokenType.php"));
+        
+        supportingFiles.add(new SupportingFile("tests/Sdk/Storage/BaseStorage.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Storage", "BaseStorage.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/Storage/Storage.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Storage", "Storage.php"));
+        
+        supportingFiles.add(new SupportingFile("tests/Sdk/OAuth2/AuthorizationCode.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "AuthorizationCode.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/OAuth2/ClientCredentials.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "ClientCredentials.php"));
+        supportingFiles.add(new SupportingFile("tests/Sdk/OAuth2/PKCE.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "OAuth2", "PKCE.php"));
+
+        supportingFiles.add(new SupportingFile("tests/Sdk/Utils/Utils.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + sdkFolder + File.separator + "Utils", "Utils.php"));
+
+
+
+        supportingFiles.add(new SupportingFile("tests/UnitTests/KindeClientTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "UnitTests", "KindeClientTest.php"));
+        supportingFiles.add(new SupportingFile("tests/UnitTests/OAuth2AuthorizationCodeFlowTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "UnitTests", "OAuth2AuthorizationCodeFlowTest.php"));
+        supportingFiles.add(new SupportingFile("tests/UnitTests/OAuth2ClientCredentialTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "UnitTests", "OAuth2ClientCredentialTest.php"));
+        supportingFiles.add(new SupportingFile("tests/UnitTests/OAuth2PKCETest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "UnitTests", "OAuth2PKCETest.php"));
+        supportingFiles.add(new SupportingFile("tests/UnitTests/UtilsTest.mustache", toSrcPath(invokerPackage, testBasePath) + File.separator + "UnitTests", "UtilsTest.php"));
     }
 }
