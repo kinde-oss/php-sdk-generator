@@ -1,11 +1,11 @@
 <?php
 
-namespace {{invokerPackage}}\Sdk\OAuth2;
+namespace {{invokerPackage}}\Test\Sdk\OAuth2;
 
-use {{invokerPackage}}\Sdk\Enums\GrantType;
-use {{invokerPackage}}\Sdk\Utils\Utils;
-use {{invokerPackage}}\KindeClientSDK;
-use {{invokerPackage}}\Sdk\Storage\Storage;
+use {{invokerPackage}}\Test\Sdk\Enums\GrantType;
+use {{invokerPackage}}\Test\Sdk\KindeClientSDK;
+use {{invokerPackage}}\Test\Sdk\Utils\Utils;
+use {{invokerPackage}}\Test\Sdk\Storage\Storage;
 
 class AuthorizationCode
 {
@@ -34,8 +34,7 @@ class AuthorizationCode
         ];
         $mergedAdditionalParameters = Utils::addAdditionalParameters($clientSDK->additionalParameters, $additionalParameters);
         $searchParams = array_merge($searchParams, $mergedAdditionalParameters);
-        if (!headers_sent()) {
-            exit(header('Location: ' . $clientSDK->authorizationEndpoint . '?' . http_build_query($searchParams)));
-        }
+
+        return 'redirecting...';
     }
 }

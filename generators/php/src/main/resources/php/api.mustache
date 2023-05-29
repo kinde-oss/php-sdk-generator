@@ -29,6 +29,7 @@ use {{invokerPackage}}\ApiException;
 use {{invokerPackage}}\Configuration;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\ObjectSerializer;
+use {{invokerPackage}}\Sdk\Storage\Storage;
 
 /**
  * {{classname}} Class Doc Comment
@@ -40,6 +41,11 @@ use {{invokerPackage}}\ObjectSerializer;
  */
 {{#operations}}class {{classname}}
 {
+    /**
+     * @var Storage
+     */
+    protected $storage;
+
     /**
      * @var ClientInterface
      */
@@ -76,6 +82,8 @@ use {{invokerPackage}}\ObjectSerializer;
         $this->client = $client ?: new Client();
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
+        
+        $this->storage = Storage::getInstance();
     }
 
     /**
@@ -631,9 +639,9 @@ use {{invokerPackage}}\ObjectSerializer;
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         } else {
-            $token = json_decode($_SESSION['kinde']['token']);
-            if (!empty($token) && !empty($token->access_token)) {
-                $headers['Authorization'] = 'Bearer ' . $token->access_token;
+            $token = $this->storage->getAccessToken();
+            if (!empty($token)) {
+                $headers['Authorization'] = 'Bearer ' . $token;
             }
         }
         {{/isBasicBearer}}
@@ -643,9 +651,9 @@ use {{invokerPackage}}\ObjectSerializer;
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         } else {
-            $token = json_decode($_SESSION['kinde']['token']);
-            if (!empty($token) && !empty($token->access_token)) {
-                $headers['Authorization'] = 'Bearer ' . $token->access_token;
+            $token = $this->storage->getAccessToken();
+            if (!empty($token)) {
+                $headers['Authorization'] = 'Bearer ' . $token;
             }
         }
         {{/isOAuth}}
